@@ -178,6 +178,11 @@ STATUS initializeCurlSession(PRequestInfo pRequestInfo, PCallInfo pCallInfo, CUR
         curl_easy_setopt(pCurl, CURLOPT_SSL_VERIFYPEER, 1L);
         curl_easy_setopt(pCurl, CURLOPT_SSL_VERIFYHOST, 2L);
         curl_easy_setopt(pCurl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+        // GDPR EcoVacs:
+        // v1.2 ciphers
+        curl_easy_setopt(pCurl, CURLOPT_SSL_CIPHER_LIST, "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256");
+        // v1.3 ciphers
+        curl_easy_setopt(pCurl, CURLOPT_TLS13_CIPHERS, "TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:TLS_AES_128_CCM_SHA256");
     }
 
     // set request completion timeout in milliseconds
